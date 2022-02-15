@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>To Do List App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="./static/style.css">
+
+</head>
+<body>
+
+<div id="myDIV" class="header">
+  <h2 style="margin:5px">To Do List App</h2>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="text" name="title" id="myInput" placeholder="Title...">
+    <button type="submit" class="addBtn">Add</button>
+  </form>
+</div>
+<h3> New List </h3>
+<div>
+<ul id="myUL">
+  {% for todo in todos reversed %}
+  <li>{{todo.title  | title}} <span class="close"><a style="text-decoration: none; color: green;" href="delete/{{todo.id}}">Done</a></span></li>
+  {% endfor %}
+</ul>
+</div>
+<h3> Finished List </h3>
+<div>
+  <ul>
+    {% for fl in finlst %}
+     <li>{{ fl.title | title }} <span class="close"><a style="text-decoration: none; color: red;" href="returnls/{{fl.id}}">Not Done</a></span></li>
+     {% endfor %}
+  </ul>
+</div>
+<div class="footer">
+  <footer>
+    <h4 id ='clock'></h4>
+    <h4 id ='date'></h4>
+  </footer>
+</div>
+<script src="./static/Dclock.js"></script>
+</body>
+</html>
